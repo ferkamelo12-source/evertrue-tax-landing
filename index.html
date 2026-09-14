@@ -97,7 +97,27 @@
   #mobile-menu[data-open="false"] { max-height: 0; opacity: 0; overflow: hidden; }
   #mobile-menu[data-open="true"] { max-height: 560px; opacity: 1; }
 
-  .whatsapp-float { box-shadow: 0 6px 20px -4px rgba(0,0,0,0.35); }
+  .whatsapp-float { position: relative; box-shadow: 0 6px 20px -4px rgba(0,0,0,0.35); }
+  .whatsapp-float::before {
+    content: '';
+    position: absolute; inset: 0;
+    border-radius: 9999px;
+    background: #25D366;
+    animation: whatsappPulse 2.2s cubic-bezier(0,0,0.2,1) infinite;
+    z-index: -1;
+  }
+  @keyframes whatsappPulse {
+    0% { transform: scale(1); opacity: 0.55; }
+    70%, 100% { transform: scale(1.9); opacity: 0; }
+  }
+  .whatsapp-badge { animation: whatsappBadgeBounce 1.8s ease-in-out infinite; }
+  @keyframes whatsappBadgeBounce {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.18); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .whatsapp-float::before, .whatsapp-badge { animation: none; }
+  }
 
   .form-input {
     width: 100%; border: 1px solid #cbd5e1; border-radius: 0.75rem;
@@ -135,8 +155,7 @@
         <button type="button" onclick="setLang('es')" id="btn-es" aria-pressed="true" class="lang-switch-btn px-3 py-1 rounded-full transition-colors flex items-center justify-center">ES</button>
         <button type="button" onclick="setLang('en')" id="btn-en" aria-pressed="false" class="lang-switch-btn px-3 py-1 rounded-full transition-colors flex items-center justify-center">EN</button>
       </div>
-      <a href="https://wa.me/16363778894?text=Hola%2C%20quiero%20agendar%20una%20consulta%20con%20Evertrue%20Tax%20Advisors"
-         target="_blank" rel="noopener"
+      <a href="#contacto"
          class="hidden md:inline-block bg-redStrategic hover:bg-red-700 text-white text-sm font-bold px-5 py-2.5 rounded-full transition-colors">
         <span class="lang-es">Agendar consulta</span><span class="lang-en">Schedule a Consultation</span>
       </a>
@@ -162,7 +181,7 @@
           <button type="button" onclick="setLang('en')" id="btn-en-menu" aria-pressed="false" class="lang-switch-btn px-3 py-1 rounded-full transition-colors">EN</button>
         </div>
       </div>
-      <a href="https://wa.me/16363778894?text=Hola%2C%20quiero%20agendar%20una%20consulta%20con%20Evertrue%20Tax%20Advisors" target="_blank" rel="noopener"
+      <a href="#contacto" onclick="closeMobileMenu()"
          class="mt-3 text-center bg-redStrategic text-white font-bold px-5 py-3 rounded-full">
         <span class="lang-es">Agendar consulta</span><span class="lang-en">Schedule a Consultation</span>
       </a>
@@ -174,6 +193,7 @@
 <a href="https://wa.me/16363778894?text=Hola%2C%20quiero%20agendar%20una%20consulta%20con%20Evertrue%20Tax%20Advisors" target="_blank" rel="noopener"
    aria-label="WhatsApp Evertrue Tax Advisors"
    class="whatsapp-float fixed bottom-5 right-5 z-40 h-14 w-14 flex items-center justify-center rounded-full bg-[#25D366] text-white hover:scale-105 transition-transform">
+  <span class="whatsapp-badge absolute -top-1 -right-1 h-5 w-5 flex items-center justify-center rounded-full bg-redStrategic text-white text-[11px] font-bold border-2 border-white" aria-hidden="true">1</span>
   <svg class="h-7 w-7" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 2C6.477 2 2 6.477 2 12c0 1.821.487 3.53 1.338 5.003L2 22l5.13-1.32A9.94 9.94 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18a7.94 7.94 0 01-4.052-1.11l-.29-.172-3.045.783.81-2.968-.19-.306A7.95 7.95 0 014 12c0-4.411 3.589-8 8-8s8 3.589 8 8-3.589 8-8 8z"/></svg>
 </a>
 
@@ -195,7 +215,7 @@
         <span class="lang-en">At Evertrue Tax Advisors LLC, we help individuals, entrepreneurs, and businesses stay compliant, organize their finances, and make better decisions for their business.</span>
       </p>
       <div class="flex flex-wrap gap-4">
-        <a href="https://wa.me/16363778894?text=Hola%2C%20quiero%20agendar%20una%20consulta%20con%20Evertrue%20Tax%20Advisors" target="_blank" rel="noopener"
+        <a href="#contacto"
            class="bg-redStrategic hover:bg-red-700 text-white font-bold px-7 py-3.5 rounded-full transition-colors">
           <span class="lang-es">Agendar una consulta</span><span class="lang-en">Schedule a Consultation</span>
         </a>
@@ -218,87 +238,71 @@
   </div>
 </section>
 
-<!-- ===================== QUIENES SOMOS ===================== -->
-<section id="nosotros" class="max-w-7xl mx-auto px-5 md:px-8 py-20">
-  <div class="grid md:grid-cols-3 gap-10">
-    <div>
-      <span class="inline-block text-xs font-bold tracking-widest uppercase text-redStrategic mb-2">
-        <span class="lang-es">Sobre la firma</span><span class="lang-en">About the Firm</span>
-      </span>
-      <h2 class="text-2xl md:text-3xl font-extrabold text-navy">
-        <span class="lang-es">Quiénes somos</span><span class="lang-en">About Us</span>
-      </h2>
-    </div>
-    <div class="md:col-span-2 space-y-4 text-slate-700 leading-relaxed">
-      <p class="lang-es">En Evertrue Tax Advisors LLC somos una firma especializada en servicios fiscales, contables y de formación empresarial en Estados Unidos. Acompañamos a nuestros clientes desde la creación de su empresa hasta el cumplimiento de sus obligaciones tributarias, contables y operativas.</p>
-      <p class="lang-en">At Evertrue Tax Advisors LLC, we specialize in tax, accounting, and business formation services in the United States. We support our clients from the moment they create their company through their ongoing tax, accounting, and business compliance responsibilities.</p>
-
-      <p class="lang-es">Nuestro equipo combina experiencia en preparación de impuestos, bookkeeping, sales tax, payroll, ITIN, creación de empresas y asesoría para negocios que desean operar correctamente en el mercado estadounidense.</p>
-      <p class="lang-en">Our team combines experience in tax preparation, bookkeeping, sales tax, payroll, ITIN applications, business formation, and advisory services for businesses that want to operate properly in the U.S. market.</p>
-
-      <p class="lang-es">Trabajamos con clientes locales e internacionales que necesitan una guía clara, profesional y confiable para manejar sus responsabilidades fiscales y empresariales en EE. UU.</p>
-      <p class="lang-en">We work with both local and international clients who need clear, professional, and reliable guidance to manage their tax and business responsibilities in the United States.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ===================== PROPUESTA DE VALOR ===================== -->
+<!-- ===================== POR QUE ELEGIRNOS ===================== -->
 <section class="bg-offwhite border-y border-slate-200">
   <div class="max-w-7xl mx-auto px-5 md:px-8 py-20">
     <div class="max-w-3xl mb-10">
       <span class="inline-block text-xs font-bold tracking-widest uppercase text-redStrategic mb-2">
-        <span class="lang-es">Nuestro enfoque</span><span class="lang-en">Our Approach</span>
+        <span class="lang-es">Por qué elegirnos</span><span class="lang-en">Why Choose Us</span>
       </span>
-      <h2 class="text-2xl md:text-3xl font-extrabold text-navy mb-4">
-        <span class="lang-es">Nuestra propuesta de valor</span><span class="lang-en">Our Value Proposition</span>
+      <h2 class="text-2xl md:text-3xl font-extrabold text-navy">
+        <span class="lang-es">Por qué elegir Evertrue Tax Advisors</span><span class="lang-en">Why Choose Evertrue Tax Advisors</span>
       </h2>
-      <p class="text-slate-700 leading-relaxed">
-        <span class="lang-es">En Evertrue no solo preparamos documentos: acompañamos a nuestros clientes con una visión integral de negocio. Ofrecemos orientación clara, procesos organizados y comunicación constante para que cada cliente entienda qué debe hacer, cuándo debe hacerlo y cómo mantenerse en cumplimiento.</span>
-        <span class="lang-en">At Evertrue, we do more than prepare documents. We support our clients with a comprehensive business-oriented approach. We provide clear guidance, organized processes, and consistent communication so each client understands what needs to be done, when it needs to be done, and how to remain compliant.</span>
-      </p>
     </div>
 
     <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
       <!-- ES items -->
       <div class="lang-es contents">
         <div class="bg-white rounded-xl p-5 border border-slate-200 flex items-start gap-3">
-          <span class="text-redStrategic font-bold">✓</span><span>Cumplimiento fiscal y contable.</span>
+          <span class="text-redStrategic font-bold">&#10003;</span><span>Cumplimiento fiscal y contable.</span>
         </div>
         <div class="bg-white rounded-xl p-5 border border-slate-200 flex items-start gap-3">
-          <span class="text-redStrategic font-bold">✓</span><span>Organización financiera.</span>
+          <span class="text-redStrategic font-bold">&#10003;</span><span>Organización financiera clara.</span>
         </div>
         <div class="bg-white rounded-xl p-5 border border-slate-200 flex items-start gap-3">
-          <span class="text-redStrategic font-bold">✓</span><span>Acompañamiento personalizado.</span>
+          <span class="text-redStrategic font-bold">&#10003;</span><span>Atención y acompañamiento personalizado, de principio a fin.</span>
         </div>
         <div class="bg-white rounded-xl p-5 border border-slate-200 flex items-start gap-3">
-          <span class="text-redStrategic font-bold">✓</span><span>Procesos seguros y confidenciales.</span>
+          <span class="text-redStrategic font-bold">&#10003;</span><span>Procesos organizados, seguros y confidenciales.</span>
         </div>
         <div class="bg-white rounded-xl p-5 border border-slate-200 flex items-start gap-3">
-          <span class="text-redStrategic font-bold">✓</span><span>Soluciones adaptadas al tipo de cliente y negocio.</span>
+          <span class="text-redStrategic font-bold">&#10003;</span><span>Comunicación clara en español e inglés.</span>
         </div>
         <div class="bg-white rounded-xl p-5 border border-slate-200 flex items-start gap-3">
-          <span class="text-redStrategic font-bold">✓</span><span>Comunicación clara en español e inglés.</span>
+          <span class="text-redStrategic font-bold">&#10003;</span><span>Experiencia con empresas en diferentes estados.</span>
+        </div>
+        <div class="bg-white rounded-xl p-5 border border-slate-200 flex items-start gap-3">
+          <span class="text-redStrategic font-bold">&#10003;</span><span>Explicaciones simples para temas fiscales complejos.</span>
+        </div>
+        <div class="bg-white rounded-xl p-5 border border-slate-200 flex items-start gap-3">
+          <span class="text-redStrategic font-bold">&#10003;</span><span>Soporte para emprendedores y negocios locales e internacionales.</span>
         </div>
       </div>
       <!-- EN items -->
       <div class="lang-en contents">
         <div class="bg-white rounded-xl p-5 border border-slate-200 flex items-start gap-3">
-          <span class="text-redStrategic font-bold">✓</span><span>Tax and accounting compliance.</span>
+          <span class="text-redStrategic font-bold">&#10003;</span><span>Tax and accounting compliance.</span>
         </div>
         <div class="bg-white rounded-xl p-5 border border-slate-200 flex items-start gap-3">
-          <span class="text-redStrategic font-bold">✓</span><span>Financial organization.</span>
+          <span class="text-redStrategic font-bold">&#10003;</span><span>Clear financial organization.</span>
         </div>
         <div class="bg-white rounded-xl p-5 border border-slate-200 flex items-start gap-3">
-          <span class="text-redStrategic font-bold">✓</span><span>Personalized support.</span>
+          <span class="text-redStrategic font-bold">&#10003;</span><span>Personalized attention and support, from start to finish.</span>
         </div>
         <div class="bg-white rounded-xl p-5 border border-slate-200 flex items-start gap-3">
-          <span class="text-redStrategic font-bold">✓</span><span>Secure and confidential processes.</span>
+          <span class="text-redStrategic font-bold">&#10003;</span><span>Organized, secure, and confidential processes.</span>
         </div>
         <div class="bg-white rounded-xl p-5 border border-slate-200 flex items-start gap-3">
-          <span class="text-redStrategic font-bold">✓</span><span>Solutions tailored to each client and business.</span>
+          <span class="text-redStrategic font-bold">&#10003;</span><span>Clear communication in English and Spanish.</span>
         </div>
         <div class="bg-white rounded-xl p-5 border border-slate-200 flex items-start gap-3">
-          <span class="text-redStrategic font-bold">✓</span><span>Clear communication in English and Spanish.</span>
+          <span class="text-redStrategic font-bold">&#10003;</span><span>Experience with companies across different states.</span>
+        </div>
+        <div class="bg-white rounded-xl p-5 border border-slate-200 flex items-start gap-3">
+          <span class="text-redStrategic font-bold">&#10003;</span><span>Simple explanations for complex tax matters.</span>
+        </div>
+        <div class="bg-white rounded-xl p-5 border border-slate-200 flex items-start gap-3">
+          <span class="text-redStrategic font-bold">&#10003;</span><span>Support for local and international entrepreneurs and businesses.</span>
         </div>
       </div>
     </div>
@@ -627,43 +631,6 @@
   </div>
 </section>
 
-<!-- ===================== POR QUE ELEGIRNOS ===================== -->
-<section class="max-w-7xl mx-auto px-5 md:px-8 py-20">
-  <div class="max-w-3xl mb-6">
-    <span class="inline-block text-xs font-bold tracking-widest uppercase text-redStrategic mb-2">
-      <span class="lang-es">Diferenciadores</span><span class="lang-en">What Sets Us Apart</span>
-    </span>
-    <h2 class="text-2xl md:text-3xl font-extrabold text-navy mb-4">
-      <span class="lang-es">Por qué elegir Evertrue Tax Advisors</span><span class="lang-en">Why Choose Evertrue Tax Advisors</span>
-    </h2>
-    <p class="text-slate-700 leading-relaxed">
-      <span class="lang-es">Elegir Evertrue significa contar con un equipo que entiende tanto la parte fiscal como la operación real de un negocio. Nuestros clientes nos eligen porque ofrecemos:</span>
-      <span class="lang-en">Choosing Evertrue means working with a team that understands both tax compliance and the real operational needs of a business. Our clients choose us because we offer:</span>
-    </p>
-  </div>
-
-  <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-    <div class="lang-es contents">
-      <div class="flex items-start gap-3 p-4 rounded-xl bg-offwhite"><span class="text-redStrategic font-bold">✓</span><span>Atención personalizada.</span></div>
-      <div class="flex items-start gap-3 p-4 rounded-xl bg-offwhite"><span class="text-redStrategic font-bold">✓</span><span>Comunicación clara en español e inglés.</span></div>
-      <div class="flex items-start gap-3 p-4 rounded-xl bg-offwhite"><span class="text-redStrategic font-bold">✓</span><span>Procesos organizados y seguros.</span></div>
-      <div class="flex items-start gap-3 p-4 rounded-xl bg-offwhite"><span class="text-redStrategic font-bold">✓</span><span>Experiencia con empresas en diferentes estados.</span></div>
-      <div class="flex items-start gap-3 p-4 rounded-xl bg-offwhite"><span class="text-redStrategic font-bold">✓</span><span>Acompañamiento antes, durante y después del servicio.</span></div>
-      <div class="flex items-start gap-3 p-4 rounded-xl bg-offwhite"><span class="text-redStrategic font-bold">✓</span><span>Explicaciones simples para temas fiscales complejos.</span></div>
-      <div class="flex items-start gap-3 p-4 rounded-xl bg-offwhite"><span class="text-redStrategic font-bold">✓</span><span>Soporte para emprendedores locales e internacionales.</span></div>
-    </div>
-    <div class="lang-en contents">
-      <div class="flex items-start gap-3 p-4 rounded-xl bg-offwhite"><span class="text-redStrategic font-bold">✓</span><span>Personalized attention.</span></div>
-      <div class="flex items-start gap-3 p-4 rounded-xl bg-offwhite"><span class="text-redStrategic font-bold">✓</span><span>Clear communication in English and Spanish.</span></div>
-      <div class="flex items-start gap-3 p-4 rounded-xl bg-offwhite"><span class="text-redStrategic font-bold">✓</span><span>Organized and secure processes.</span></div>
-      <div class="flex items-start gap-3 p-4 rounded-xl bg-offwhite"><span class="text-redStrategic font-bold">✓</span><span>Experience with companies in different states.</span></div>
-      <div class="flex items-start gap-3 p-4 rounded-xl bg-offwhite"><span class="text-redStrategic font-bold">✓</span><span>Support before, during, and after each service.</span></div>
-      <div class="flex items-start gap-3 p-4 rounded-xl bg-offwhite"><span class="text-redStrategic font-bold">✓</span><span>Simple explanations for complex tax matters.</span></div>
-      <div class="flex items-start gap-3 p-4 rounded-xl bg-offwhite"><span class="text-redStrategic font-bold">✓</span><span>Assistance for both local and international entrepreneurs.</span></div>
-    </div>
-  </div>
-</section>
-
 <!-- ===================== PROCESO ===================== -->
 <section id="proceso" class="bg-offwhite border-y border-slate-200">
   <div class="max-w-7xl mx-auto px-5 md:px-8 py-20">
@@ -747,10 +714,8 @@
       </h2>
     </div>
     <div class="md:col-span-2 space-y-4 text-slate-700 leading-relaxed">
-      <p class="lang-es">En Evertrue Tax Advisors protegemos la información de nuestros clientes utilizando procesos seguros para la recepción, revisión y entrega de documentos.</p>
-      <p class="lang-en">At Evertrue Tax Advisors, we protect our clients' information by using secure processes for receiving, reviewing, and delivering documents.</p>
-      <p class="lang-es">La documentación sensible se maneja a través de canales seguros y plataformas diseñadas para proteger información personal, fiscal y empresarial.</p>
-      <p class="lang-en">Sensitive documentation is handled through secure channels and platforms designed to protect personal, tax, and business information.</p>
+      <p class="lang-es">En Evertrue Tax Advisors protegemos la información de nuestros clientes con procesos seguros y confidenciales para la recepción, revisión y entrega de documentos fiscales y financieros.</p>
+      <p class="lang-en">At Evertrue Tax Advisors, we protect our clients' information with secure, confidential processes for receiving, reviewing, and delivering tax and financial documents.</p>
     </div>
   </div>
 </section>
@@ -766,7 +731,7 @@
       <span class="lang-es">Agenda una consulta con Evertrue Tax Advisors LLC y recibe orientación profesional para avanzar con seguridad.</span>
       <span class="lang-en">Schedule a consultation with Evertrue Tax Advisors LLC and receive professional guidance to move forward with confidence.</span>
     </p>
-    <a href="https://wa.me/16363778894?text=Hola%2C%20quiero%20agendar%20una%20consulta%20con%20Evertrue%20Tax%20Advisors" target="_blank" rel="noopener"
+    <a href="#contacto"
        class="inline-block bg-navy hover:bg-navyLight text-white font-bold px-8 py-4 rounded-full transition-colors">
       <span class="lang-es">Agendar consulta</span><span class="lang-en">Schedule a Consultation</span>
     </a>
@@ -826,6 +791,7 @@
       <input type="hidden" name="access_key" value="426ed5be-8952-4c10-91fa-9f534e28806e">
       <input type="hidden" name="subject" value="Nueva consulta desde la landing — Evertrue Tax Advisors">
       <input type="checkbox" name="botcheck" class="hidden" style="display:none" tabindex="-1" autocomplete="off">
+      <div class="lf-fields space-y-4">
       <div>
         <label for="lf-name" class="block text-sm font-semibold mb-1.5"><span class="lang-es">Nombre completo</span><span class="lang-en">Full name</span></label>
         <input id="lf-name" name="name" type="text" required class="form-input" autocomplete="name">
@@ -842,7 +808,7 @@
       </div>
       <div>
         <label for="lf-service" class="block text-sm font-semibold mb-1.5"><span class="lang-es">Servicio de interés</span><span class="lang-en">Service of interest</span></label>
-        <select id="lf-service" required class="form-input">
+        <select id="lf-service" required class="form-input service-select">
           <option value="" data-es="Selecciona un servicio" data-en="Select a service"></option>
           <option value="tax_prep" data-es="Preparación de impuestos" data-en="Tax Preparation"></option>
           <option value="bookkeeping" data-es="Bookkeeping / Contabilidad mensual" data-en="Bookkeeping"></option>
@@ -853,7 +819,7 @@
           <option value="virtual_office" data-es="Oficina virtual" data-en="Virtual Office"></option>
           <option value="other" data-es="Otro / no estoy seguro" data-en="Other / not sure"></option>
         </select>
-        <input type="hidden" name="service" id="lf-service-hidden">
+        <input type="hidden" name="service" id="lf-service-hidden" class="service-hidden">
       </div>
       <div>
         <label for="lf-message" class="block text-sm font-semibold mb-1.5"><span class="lang-es">Mensaje (opcional)</span><span class="lang-en">Message (optional)</span></label>
@@ -862,10 +828,24 @@
       <button type="submit" id="lf-submit-btn" class="w-full sm:w-auto bg-redStrategic hover:bg-red-700 text-white font-bold px-7 py-3.5 rounded-full transition-colors disabled:opacity-60">
         <span class="lang-es">Enviar por WhatsApp</span><span class="lang-en">Send via WhatsApp</span>
       </button>
-      <p id="lf-status" class="hidden text-sm text-green-300 pt-1">
+      <p id="lf-status" class="lf-status hidden text-sm text-green-300 pt-1">
         <span class="lang-es">Abriendo WhatsApp con tu información...</span>
         <span class="lang-en">Opening WhatsApp with your information...</span>
       </p>
+      </div>
+
+      <div class="lf-success hidden text-center py-8" role="status" tabindex="-1">
+        <div class="mx-auto mb-4 h-14 w-14 rounded-full bg-white/10 border-2 border-[#25D366] flex items-center justify-center">
+          <svg class="h-7 w-7 text-[#25D366]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+        </div>
+        <h4 class="text-xl font-extrabold mb-2">
+          <span class="lang-es">¡Solicitud recibida!</span><span class="lang-en">Request received!</span>
+        </h4>
+        <p class="text-slate-300 text-sm max-w-sm mx-auto">
+          <span class="lang-es">Gracias, <strong class="lf-success-name text-white"></strong>. Ya recibimos tu solicitud y nos pondremos en contacto contigo muy pronto. También abrimos WhatsApp por si prefieres escribirnos directo.</span>
+          <span class="lang-en">Thanks, <strong class="lf-success-name text-white"></strong>. We&#39;ve received your request and will reach out very soon. We&#39;ve also opened WhatsApp in case you&#39;d like to message us directly.</span>
+        </p>
+      </div>
     </form>
   </div>
   </div>
@@ -883,11 +863,11 @@
 
 <script>
   function updateServiceOptions(lang) {
-    var select = document.getElementById('lf-service');
-    if (!select) return;
-    Array.from(select.options).forEach(function (opt) {
-      var text = opt.getAttribute('data-' + lang);
-      if (text) opt.textContent = text;
+    document.querySelectorAll('select.service-select').forEach(function (select) {
+      Array.from(select.options).forEach(function (opt) {
+        var text = opt.getAttribute('data-' + lang);
+        if (text) opt.textContent = text;
+      });
     });
   }
 
@@ -935,32 +915,35 @@
   };
 
   var LF_STATUS_TEXT = {
-    sending: { es: 'Enviando...', en: 'Sending...' },
-    sent: { es: 'Listo, te contactamos pronto. Abriendo WhatsApp...', en: 'Done — we will reach out soon. Opening WhatsApp...' },
-    error: { es: 'No se pudo enviar el correo, pero abrimos WhatsApp igual.', en: "Couldn't send the email, but we're opening WhatsApp anyway." }
+    sending: { es: 'Enviando...', en: 'Sending...' }
   };
 
-  function lfShowStatus(key, lang) {
-    var status = document.getElementById('lf-status');
-    if (!status) return;
-    status.classList.remove('hidden');
-    status.textContent = LF_STATUS_TEXT[key][lang];
+  function lfShowStatus(statusEl, key, lang) {
+    if (!statusEl) return;
+    statusEl.classList.remove('hidden');
+    statusEl.textContent = LF_STATUS_TEXT[key][lang];
   }
 
   function submitLeadForm(event) {
     event.preventDefault();
-    var form = document.getElementById('lead-form');
-    var submitBtn = document.getElementById('lf-submit-btn');
+    var form = event.target;
+    var submitBtn = form.querySelector('button[type="submit"]');
+    var statusEl = form.querySelector('.lf-status');
     var lang = document.documentElement.getAttribute('data-lang') === 'en' ? 'en' : 'es';
-    var name = document.getElementById('lf-name').value.trim();
-    var email = document.getElementById('lf-email').value.trim();
-    var phone = document.getElementById('lf-phone').value.trim();
-    var serviceKey = document.getElementById('lf-service').value;
-    var message = document.getElementById('lf-message').value.trim();
+    var nameField = form.querySelector('[name="name"]');
+    var emailField = form.querySelector('[name="email"]');
+    var phoneField = form.querySelector('[name="phone"]');
+    var messageField = form.querySelector('[name="message"]');
+    var serviceSelect = form.querySelector('select.service-select');
+    var name = nameField ? nameField.value.trim() : '';
+    var email = emailField ? emailField.value.trim() : '';
+    var phone = phoneField ? phoneField.value.trim() : '';
+    var message = messageField ? messageField.value.trim() : '';
+    var serviceKey = serviceSelect ? serviceSelect.value : '';
     var serviceLabel = (SERVICE_LABELS[lang] && SERVICE_LABELS[lang][serviceKey]) || serviceKey;
 
     // Mirror the human-readable service label into the hidden field Web3Forms will actually receive
-    var serviceHidden = document.getElementById('lf-service-hidden');
+    var serviceHidden = form.querySelector('.service-hidden');
     if (serviceHidden) serviceHidden.value = serviceLabel;
 
     function openWhatsApp() {
@@ -970,7 +953,17 @@
       window.open('https://wa.me/16363778894?text=' + encodeURIComponent(text), '_blank', 'noopener');
     }
 
-    lfShowStatus('sending', lang);
+    function showSuccess() {
+      var fieldsEl = form.querySelector('.lf-fields');
+      var successEl = form.querySelector('.lf-success');
+      if (!fieldsEl || !successEl) return;
+      form.querySelectorAll('.lf-success-name').forEach(function (el) { el.textContent = name; });
+      fieldsEl.classList.add('hidden');
+      successEl.classList.remove('hidden');
+      successEl.focus();
+    }
+
+    lfShowStatus(statusEl, 'sending', lang);
     if (submitBtn) submitBtn.disabled = true;
 
     var formData = new FormData(form);
@@ -980,13 +973,10 @@
       body: formData
     })
       .then(function (res) { return res.json().catch(function () { return {}; }).then(function (data) { return { ok: res.ok, data: data }; }); })
-      .then(function (result) { lfShowStatus(result.ok ? 'sent' : 'error', lang); })
-      .catch(function () { lfShowStatus('error', lang); })
+      .catch(function () { return { ok: false }; })
       .then(function () {
         openWhatsApp();
-        if (submitBtn) submitBtn.disabled = false;
-        form.reset();
-        updateServiceOptions(lang);
+        showSuccess();
       });
 
     return false;
